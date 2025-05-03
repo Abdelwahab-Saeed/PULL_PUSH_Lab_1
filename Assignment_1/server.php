@@ -14,7 +14,7 @@ $results = '';
 if (!empty($q)) {
     foreach ($products as $product) {
         if (strpos(strtolower($product['name']), $q) !== false) {
-            $results .= "<div>🛒 {$product['name']}</div>";
+            $results .= "<div>{$product['name']}</div>";
         }
     }
 }

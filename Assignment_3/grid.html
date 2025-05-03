@@ -1,0 +1,36 @@
+<table id="itemTable">
+    <tr>
+        <th>Item</th>
+        <th>Action</th>
+    </tr>
+    <tr data-id="1">
+        <td>Item 1</td>
+        <td><button onclick="deleteItem(1)">Delete</button></td>
+    </tr>
+    <tr data-id="2">
+        <td>Item 2</td>
+        <td><button onclick="deleteItem(2)">Delete</button></td>
+    </tr>
+    <tr data-id="3">
+        <td>Item 3</td>
+        <td><button onclick="deleteItem(3)">Delete</button></td>
+    </tr>
+    <tr data-id="4">
+        <td>Item 4</td>
+        <td><button onclick="deleteItem(4)">Delete</button></td>
+    </tr>
+</table>
+
+<script>
+    function deleteItem(id) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'index.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200 && xhr.responseText === 'success') {
+                document.querySelector(`tr[data-id="${id}"]`).remove();
+            }
+        };
+        xhr.send('id=' + id);
+    }
+</script>

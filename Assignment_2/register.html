@@ -1,0 +1,25 @@
+<form id="registerForm">
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <button type="submit">Register | Task 2</button>
+</form>
+<div id="response"></div>
+
+<script>
+    const form = document.getElementById('registerForm');
+    const responseDiv = document.getElementById('response');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'register.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                responseDiv.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send(formData);
+    });
+</script>

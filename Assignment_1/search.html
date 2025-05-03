@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Search with XHR | Task 1</title>
+</head>
+<body>
+
+  <h2>Live Search</h2>
+  <input type="text" id="searchInput">
+  <div id="resultsDiv" style="border:2px solid black"></div>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('keyup', function () {
+      const searchText = this.value;
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'server.php?q=' + encodeURIComponent(searchText), true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById('resultsDiv').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    });
+  </script>
+
+</body>
+</html>

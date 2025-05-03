@@ -1,0 +1,22 @@
+<div id="fileContainer">
+    Waiting for changes...</div>
+
+<script>
+    function poll() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'poll.php', true);
+        xhr.timeout = 60000;
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.getElementById('fileContainer').innerHTML = xhr.responseText;
+                poll();
+            }
+        };
+        xhr.ontimeout = function() {
+            poll();
+        };
+        xhr.send();
+    }
+
+    poll();
+</script>
